@@ -6,8 +6,6 @@ import App from './app'
 
 import './index.scss'
 
-const contaier = document.getElementById('root') as Element;
+const contaier = document.getElementById('root') as Element
 
-ReactDOM.createRoot(contaier).render(
-  <App />
-)
+ReactDOM.createRoot(contaier).render(<App />)

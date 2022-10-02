@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { basicSetup, EditorView } from "codemirror"
+import { basicSetup, EditorView } from 'codemirror'
 import { EditorState } from '@codemirror/state'
 import { keymap, highlightActiveLine } from '@codemirror/view'
 import { defaultKeymap } from '@codemirror/commands'
@@ -35,27 +35,25 @@ export const transparentTheme = EditorView.theme({
 //   }
 // ])
 
-
-
 import type React from 'react'
 
 interface IProps {
-  initialDoc: string,
+  initialDoc: string
   onChange?: (state: EditorState) => void
 }
 
 interface keyBinding {
-  key?: string;
-  mac?: string;
-  win?: string;
-  linux?: string;
-  run: Command;
-  shift?: Command;
-  scope?: string;
-  preventDefault?: boolean;
+  key?: string
+  mac?: string
+  win?: string
+  linux?: string
+  run: Command
+  shift?: Command
+  scope?: string
+  preventDefault?: boolean
 }
 
-type Command = (target: EditorView) => boolean;
+type Command = (target: EditorView) => boolean
 
 const useCodeMirror = <T extends Element>(
   props: IProps
@@ -67,9 +65,8 @@ const useCodeMirror = <T extends Element>(
   useEffect(() => {
     if (!refContaier.current) return
 
-    const keymapState = [...defaultKeymap, ...historyKeymap] as keyBinding[]    
-    
-    
+    const keymapState = [...defaultKeymap, ...historyKeymap] as keyBinding[]
+
     const startState = EditorState.create({
       doc: props.initialDoc,
       extensions: [
@@ -89,12 +86,12 @@ const useCodeMirror = <T extends Element>(
           if (update.changes) {
             onChange && onChange(update.state)
           }
-        /// highlightActiveLineGutter(),
-        /// history(),
-        /// lineNumbers(),
-        /// bracketMatching(),
-        /// defaultHighlightStyle.fallback,
-        /// syntaxHighlighting.fallback,
+          /// highlightActiveLineGutter(),
+          /// history(),
+          /// lineNumbers(),
+          /// bracketMatching(),
+          /// defaultHighlightStyle.fallback,
+          /// syntaxHighlighting.fallback,
         })
       ]
     })
@@ -107,7 +104,6 @@ const useCodeMirror = <T extends Element>(
   }, [refContaier])
 
   return [refContaier, editorView]
-
 }
 
 export default useCodeMirror

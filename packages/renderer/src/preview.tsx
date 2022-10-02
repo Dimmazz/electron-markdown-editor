@@ -10,7 +10,7 @@ interface IProps {
   doc: string
 }
 
-const Preview: React.FC<IProps> = (props) => {
+const Preview: React.FC<IProps> = props => {
   const md = unified()
     .use(remarkParse)
     .use(remarkGfm)

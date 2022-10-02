@@ -1,11 +1,11 @@
 /* eslint-env node */
 
-import {chrome} from '../../.electron-vendors.cache.json';
-import {join} from 'path';
-import {renderer} from 'unplugin-auto-expose';
-import { builtinModules } from 'module';
+import { chrome } from '../../.electron-vendors.cache.json'
+import { join } from 'path'
+import { renderer } from 'unplugin-auto-expose'
+import { builtinModules } from 'module'
 
-const PACKAGE_ROOT = __dirname;
+const PACKAGE_ROOT = __dirname
 
 /**
  * @type {import('vite').UserConfig}
@@ -16,14 +16,14 @@ const config = {
   root: PACKAGE_ROOT,
   resolve: {
     alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/',
-    },
+      '/@/': join(PACKAGE_ROOT, 'src') + '/'
+    }
   },
   base: '',
   server: {
     fs: {
-      strict: true,
-    },
+      strict: true
+    }
   },
   build: {
     sourcemap: true,
@@ -33,21 +33,19 @@ const config = {
     chunkSizeWarningLimit: 1600,
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
-      external: [
-        ...builtinModules.filter(m => m !== 'process' && m !== 'assert')
-      ]
+      external: [...builtinModules.filter(m => m !== 'process' && m !== 'assert')]
     },
     emptyOutDir: true,
-    reportCompressedSize: false,
+    reportCompressedSize: false
   },
   test: {
-    environment: 'happy-dom',
+    environment: 'happy-dom'
   },
   plugins: [
     renderer.vite({
-      preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
-    }),
-  ],
-};
+      preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts')
+    })
+  ]
+}
 
-export default config;
+export default config
